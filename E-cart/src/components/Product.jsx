@@ -1,9 +1,47 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Product = ({ items }) => {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const Product = ({ items, cart, setCart }) => {
+  const addToCart = (id, price, title, description, imgSrc) => {
+    const obj = {
+      id,
+      price,
+      title,
+      description,
+      imgSrc,
+    };
+    setCart([...cart, obj]);
+    console.log("cart element =", cart);
+    toast.success("Item added on cart", {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      //transition: Bounce,
+    });
+  };
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        //transition:Bounce
+      />
       <div className="container my-5">
         <div className="row">
           {items.map((product) => {
@@ -35,7 +73,20 @@ const Product = ({ items }) => {
                       <button className="btn btn-primary mx-3">
                         ₹ {product.price}
                       </button>
-                      <button className="btn btn-warning">Add To Cart</button>
+                      <button
+                        onClick={() =>
+                          addToCart(
+                            product.id,
+                            product.price,
+                            product.title,
+                            product.description,
+                            product.imgSrc
+                          )
+                        }
+                        className="btn btn-warning"
+                      >
+                        Add To Cart
+                      </button>
                     </div>
                   </div>
                 </div>
