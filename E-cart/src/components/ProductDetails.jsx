@@ -15,8 +15,7 @@ function ProductDetails() {
     const relatedProducts = items.filter(
       (p) => p.category === product.category
     );
-    //
-    console.log(relatedProducts);
+    //console.log(relatedProducts);
     setRelatedProducts(relatedProducts);
   }, [id, product.category]);
   return (
