@@ -1,8 +1,7 @@
 import React from "react";
-import { items } from "./Data";
 import { Link } from "react-router-dom";
 
-function Product() {
+const Product = ({ items }) => {
   return (
     <>
       <div className="container my-5">
@@ -10,7 +9,10 @@ function Product() {
           {items.map((product) => {
             return (
               <>
-                <div key={product.id} className="col-lg-4 my-3 text-center">
+                <div
+                  key={product.id}
+                  className="col-lg-4 col-md-6 my-3 text-center"
+                >
                   <div className="card" style={{ width: "18rem" }}>
                     <Link
                       to={`/product/${product.id}`}
@@ -44,5 +46,5 @@ function Product() {
       </div>
     </>
   );
-}
+};
 export default Product;
